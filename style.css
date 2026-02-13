@@ -6,51 +6,57 @@ body {
     align-items: center;
     background-image: url("heart-bg.jpg");
     font-family: "Pixelify Sans", sans-serif;
-    overflow: hidden; /* Prevents unwanted scrolling on the main page */
 }
 
 /* Envelope Screen */
 #envelope-container {
     text-align: center;
-    cursor: pointer;
+    cursor:pointer;
 }
 
 @keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.1); }
-    100% { transform: scale(1); }
+    0% {
+        transform:scale(1);
+    }
+    50% {
+        transform: scale(1.1);
+    }
+    100% {
+        transform: scale(1);
+    }
 }
 
-#envelope {
+#envelope{
     width: 200px;
     animation: pulse 1.5s infinite;
     cursor: pointer;
 }
 
-#letter-container {
+#letter-container{
     display: none;
-    position: fixed;
+    position:fixed;
     inset: 0;
     justify-content: center;
     align-items: center;
-    z-index: 50;
 }
 
-.letter-window {
+.letter-window{
     width: 90vw;
     max-width: 800px;
     aspect-ratio: 3/2;
-    padding: 20px;
+    padding: 20px 20px 0 20px;
     display: flex;
     flex-direction: column;
-    justify-content: flex-start; /* Changed to flex-start for scroll room */
+    justify-content: center;
     align-items: center;
     text-align: center;
     background-image: url("window.png");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    padding-top: 150px; /* Adjust based on your window.png header */
+    border-radius: 12px;
+    gap: 1px;
+    padding-top: 180px;
 
     transform: scale(1.2);
     opacity: 0;
@@ -63,132 +69,169 @@ body {
 }
 
 h1 {
-    font-size: 28px;
-    margin: 0 0 10px 0;
+    font-size: 30px;
+    margin:0;
 }
 
-/* Letter Message Box */
-.message-container {
-    width: 85%;
-    max-height: 220px; /* Keeps text inside the box */
-    overflow-y: auto;
-    margin: 10px 0;
-    padding-right: 10px;
-    display: flex;
-    flex-direction: column;
-}
-
-.message-text {
-    font-size: 18px;
-    line-height: 1.5;
-    color: #000;
-    text-align: left;
-    margin: 0;
-}
-
-/* Custom scrollbar for a cleaner look */
-.message-container::-webkit-scrollbar {
-    width: 6px;
-}
-.message-container::-webkit-scrollbar-thumb {
-    background: #ffb6c1;
-    border-radius: 10px;
+p {
+    font-size: 40px;
 }
 
 /* Cat */
+
 .cat {
-    width: 220px;
-    margin-bottom: 10px;
+    width: 250px;
+    margin: 10px 0;
+    transition: width 0.4s ease;
 }
 
-/* Buttons */
+.letter-window.final .cat {
+    width: 180px;
+}
+
+/* buttons */
 .buttons {
     display: flex;
     justify-content: center;
-    gap: 20px;
-    margin-top: 10px;
+    gap: 30px;
+    position: relative;
 }
 
-.next-btn {
-    background-color: #ff8fa3;
-    color: white;
-    border: 2px solid #000;
-    padding: 8px 20px;
-    font-family: "Pixelify Sans", sans-serif;
-    font-size: 18px;
+.no-wrapper{
+    position:relative;
+}
+
+.btn {
+    width: 120px;
     cursor: pointer;
-    box-shadow: 4px 4px 0px #000;
-    transition: background 0.3s;
+    user-select: none;
 }
 
-.next-btn:active {
-    box-shadow: none;
-    transform: translate(2px, 2px);
+.yes-btn,
+.no-btn {
+width: 120px;
+height: auto;
+display: inline-block;
 }
 
-.final-text {
-    font-size: 18px;
+.yes-btn {
+    position: relative;
+    z-index: 2;
+    transform-origin: center center;
+    transition: transform 0.3s ease;
+}
+
+.no-btn {
+    z-index: 1;
+    position: relative;
+    transition: transform 0.15s ease;
+    cursor: default;
+}
+
+.final-text{
+    font-size: 22px;
     line-height: 1.4;
-    padding: 15px;
-    background-color: rgba(255, 240, 240, 0.7);
+    text-align: center;
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: rgba(255,240,240,0.5);
     border-radius: 12px;
 }
+/* --- CORNER VIDEOS LAYOUT --- */
 
-/* --- VIDEOS --- */
+/* This styles both videos simultaneously */
 .corner-video {
-    display: none;
+    display: none; /* Hidden until Kelsey clicks 'Yes' */
     position: fixed;
     top: 50%;
-    transform: translateY(-50%);
-    width: 220px;
-    border-radius: 12px;
-    border: 4px solid #fff;
+    transform: translateY(-50%); /* Keeps them vertically centered */
+    width: 250px; /* Adjust size to fit your screen */
+    border-radius: 15px;
+    border: 5px solid #fff; /* White border like a photo frame */
     box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-    z-index: 100;
+    z-index: 1000;
     object-fit: cover;
 }
 
-#video-left { left: 40px; }
-#video-right { right: 40px; }
+/* Position the left video */
+#video-left {
+    left: 40px; 
+}
 
+/* Position the right video */
+#video-right {
+    right: 40px;
+}
+
+/* This class is added by JavaScript when she clicks 'Yes' */
 .corner-video.show {
     display: block;
     animation: popIn 0.6s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 }
 
+/* Animation to make the videos "pop" out from the center */
 @keyframes popIn {
-    0% { transform: translateY(-50%) scale(0); opacity: 0; }
-    100% { transform: translateY(-50%) scale(1); opacity: 1; }
+    0% { 
+        transform: translateY(-50%) scale(0); 
+        opacity: 0; 
+    }
+    100% { 
+        transform: translateY(-50%) scale(1); 
+        opacity: 1; 
+    }
 }
 
-/* --- MOBILE RESPONSIVE --- */
+/* Responsive: Shrinks videos on smaller laptops/tablets */
+@media (max-width: 1200px) {
+    .corner-video {
+        width: 180px;
+    }
+    #video-left { left: 15px; }
+    #video-right { right: 15px; }
+}
+
+/* Responsive: On phones, it's best to hide them or make them tiny 
+   so they don't cover your letter! */
 @media (max-width: 600px) {
-    .letter-window {
-        padding-top: 100px; /* Pulls text up for phone screens */
-        aspect-ratio: auto;
-        height: 80vh;
-        background-size: cover; /* Ensures window fills phone height */
-    }
-
-    .message-container {
-        max-height: 250px; /* More room for vertical reading */
-    }
-
-    .message-text {
-        font-size: 15px;
-    }
-
-    #video-left {
-        display: none !important; /* Hide left video on phones to save space */
-    }
-
-    #video-right {
-        width: 90px;
+    .corner-video {
+        width: 100px;
         top: auto;
-        bottom: 15px;
-        right: 15px;
+        bottom: 10px;
         transform: none;
     }
+}
+.message-text {
+    font-size: 20px;
+    line-height: 1.6;
+    padding: 15px;
+    color: #000000;
+    max-width: 80%;
+    margin: 0 auto;
+}
 
-    h1 { font-size: 22px; }
+.next-btn {
+    background-color: #ff8fa3;
+    color: white;
+    border: none;
+    padding: 10px 25px;
+    font-family: "Pixelify Sans", sans-serif;
+    font-size: 18px;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-top: 15px;
+    transition: background 0.3s;
+}
+
+.next-btn:hover {
+    background-color: #ff4d6d;
+}
+.message-text {
+    width: 90%;
+    max-width: 500px;
+    margin: 20px auto;
+    font-size: 18px;
+    line-height: 1.6;
+    /* This allows her to scroll if the message is really long */
+    max-height: 250px; 
+    overflow-y: auto;
 }
