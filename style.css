@@ -235,41 +235,45 @@ display: inline-block;
     max-height: 250px; 
     overflow-y: auto;
 }
-/* --- MOBILE RESPONSIVE FIX --- */
+/* --- ULTIMATE MOBILE FIX --- */
 
 @media (max-width: 600px) {
-    /* 1. Shrink and move videos to the bottom corners */
-    .corner-video {
-        width: 85px;       /* Much smaller so they don't crowd the letter */
-        top: auto;         /* Disable the vertical centering */
-        bottom: 10px;      /* Pin them to the very bottom edge */
-        transform: none;   /* Reset the centering transform */
-        border-width: 2px; /* Thinner border for smaller screens */
-        z-index: 10;       /* Keep them behind the letter window if they overlap */
-    }
-
+    /* 1. Hide the left video entirely on phones to save space */
     #video-left {
-        left: 10px;        /* Tuck into bottom-left */
+        display: none !important;
     }
 
+    /* 2. Make the right video a small "thumbnail" in the corner */
     #video-right {
-        right: 10px;       /* Tuck into bottom-right */
+        width: 100px;      /* Small enough to stay out of the way */
+        height: auto;
+        top: auto;
+        bottom: 10px;      /* Pin to the bottom edge */
+        right: 10px;       /* Pin to the right edge */
+        transform: none;
+        z-index: 5;        /* Puts it BEHIND the letter window just in case */
+        border-width: 2px;
     }
 
-    /* 2. Adjust the letter window so it sits above the videos */
+    /* 3. Force the Letter Window to stay in front and fit the screen */
     .letter-window {
-        width: 95vw;
-        padding-top: 140px; /* Adjust this so your title doesn't get cut off */
-        transform: scale(0.9); /* Slightly shrink the window to fit better */
+        width: 90vw;       /* Take up 90% of the screen width */
+        z-index: 10;       /* Higher than the video so it stays on top */
+        transform: scale(0.85); /* Shrink slightly to avoid edges */
+        padding-top: 100px; /* Moves text up to prevent overlap at the bottom */
     }
 
-    /* 3. Make the long letter text easier to read on a small screen */
+    /* 4. Ensure the text box is small enough to see the 'Continue' button */
     .message-container {
-        max-height: 180px;  /* Make the scroll area shorter so the button is visible */
+        max-height: 160px;
+        width: 95%;
     }
 
     .message-text {
-        font-size: 15px;    /* Smaller font for mobile */
-        line-height: 1.4;
+        font-size: 14px;   /* Smaller font for better fit */
+    }
+
+    h1 {
+        font-size: 20px;   /* Shrink title to save vertical space */
     }
 }
