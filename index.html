@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <title>Valentine Letter</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Aldrich&family=Pixelify+Sans:wght@400..700&display=swap"
+      rel="stylesheet"
+    />
+    <title>Document</title>
+  </head>
+  <body>
+    <!-- Envelope Screen -->
+    <div id="envelope-container">
+      <img src="envelope.png" alt="Envelope" id="envelope" />
+      <p>♡ Letter for You ♡</p>
+    </div>
+
+    <!-- Letter Screen -->
+    <div id="letter-container">
+        <video id="video-left" class="corner-video" loop muted playsinline>
+    <source src="video.mp4" type="video/mp4">
+</video>
+
+<video id="video-right" class="corner-video" loop muted playsinline>
+    <source src="video.mp4" type="video/mp4">
+</video>
+
+      <div class="letter-window">
+    <h1 id="letter-title">Will you be my Valentine?</h1>
+
+    <img src="otter.gif" class="cat" id="letter-cat" />
+
+    <div class="buttons" id="letter-buttons">
+        <img src="yes.png" class="btn yes-btn" alt="Yes" />
+        <div class="no-wrapper">
+            <img src="no.png" class="btn no-btn" alt="No" />
+        </div>
+    </div>
+
+    <div id="personal-paragraph" style="display: none; flex-direction: column; align-items: center;">
+  <div class="message-container">
+    <p class="message-text">
+      To my dearest, Kelsey,<br><br>
+      For the last two months, everything has felt so surreal. You have truly made me the happiest man in the world. Even now, I still can’t believe we actually met.<br><br>
+      You might wonder why I can’t stop looking at you, but I wish you could see yourself the way I do. You are so beautiful. Your cheeks, your smile, your humor, and the way you carry yourself with such grace are all impossible not to notice. Everything about you is even better than I imagined.<br><br>
+      I knew I liked you when my heart would race just seeing you, but I knew it was something more when I realized how calm I feel by your side. You bring me a sense of peace. I love how you notice the small details about me because you make me feel truly seen. I love how patient you are when you explain things to me, the way you take aesthetic photos when you walk, and even your love for matcha. Seeing the way you play with kids shows me just how wonderful of a person you are.<br><br>
+      I knew I loved you when I realized I was scared of losing you. You stand out in the most beautiful way, Kelsey. Whether I have a chance or not, I want to pursue you. I want to know every part of you, including the things you love and the things you don’t.<br><br>
+      You are my new dream.
+    </p>
+  </div>
+  <button id="proceed-to-date" class="next-btn">Continue... ♡</button>
+</div>
+
+    <p id="final-text" class="final-text" style="display: none">
+        <strong>Valentine Date:</strong> If you’re free on Tuesday, 
+        can I take you out on a simple Valentine’s date near your place? 
+        I’d really love to spend time with you
+    </p>
+</div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
